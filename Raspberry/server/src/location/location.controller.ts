@@ -12,7 +12,7 @@ export class LocationController {
 
     @Post()
     async create(@Body() createLocationDto: CreateLocationDto) {
-        return 'This action adds a new cat';
+        return await this.locationService.create(createLocationDto);
     }
 
     @Get()
@@ -22,18 +22,18 @@ export class LocationController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id) {
-        return `This action returns a #${id} location`;
+    findOne(@Param('id') id): Promise<Location> {
+        return this.locationService.findOne(id);
     }
 
     @Put(':id')
-    update(@Param('id') id, @Body() updateLocationDto: UpdateLocationDto) {
-        return `This action updates a #${id} location`;
+    update(@Param('id') id, @Body() updateLocationDto: UpdateLocationDto): Promise<Location> {
+        return this.locationService.update(updateLocationDto, id);
     }
 
     @Delete(':id')
-    remove(@Param('id') id) {
-        return `This action removes a #${id} location`;
+    remove(@Param('id') id): Promise<Location[]> {
+        return this.locationService.delete(id);
     }
 
 }
