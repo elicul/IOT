@@ -7,10 +7,9 @@ fi
 
 apt-get update -y
 apt-get upgrade -y
-apt-get install -y rpi-update
 
-apt-get install -t stretch -y php7.0 php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-curl php7.0-xml php7.0-gd php7.0-mysql
-apt-get install -t stretch -y nginx
+apt-get install -y php7.0 php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-curl php7.0-xml php7.0-gd php7.0-mysql
+apt-get install -y nginx
 
 update-rc.d nginx defaults
 update-rc.d php7.0-fpm defaults
@@ -109,26 +108,24 @@ chown -R pi:www-data /var/www
 chgrp -R www-data /var/www
 chmod -R g+rw /var/www
 
-setfacl -d -R -m g::rw /var/www
-
-apt-get -y autoremove
-
 service nginx restart
 service php7.0-fpm restart
 
 # MySQL
-apt-get -t stretch -y install mysql-server
+apt-get -y install mysql-server
 
 read -s -p "Type the password you just entered (MySQL): " mysqlPass
 
 mysql --user="root" --password="$mysqlPass" --database="mysql" --execute="GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$mysqlPass'; FLUSH PRIVILEGES;"
+
+# CREATE USER 'elicul' IDENTIFIED BY 'secret';GRANT ALL PRIVILEGES ON *.* TO 'elicul'@localhost IDENTIFIED BY 'secret';FLUSH PRIVILEGES;
 
 service mysql restart
 
 # PhpMyAdmin
 read -p "Do you want to install PhpMyAdmin? <y/N> " prompt
 if [ "$prompt" = "y" ]; then
-	apt-get install -t stretch -y phpmyadmin
+	apt-get install -y phpmyadmin
 	ln -s /usr/share/phpmyadmin /var/www/default/public
 	echo "http://192.168.XXX.XXX/phpmyadmin to enter PhpMyAdmin"
 fi
