@@ -5,13 +5,8 @@ if [ "$(whoami)" != "root" ]; then
 	exit
 fi
 
-echo "deb http://mirrordirector.raspbian.org/raspbian/ stretch main contrib non-free rpi" > /etc/apt/sources.list.d/stretch.list
-echo "APT::Default-Release \"jessie\";" > /etc/apt/apt.conf.d/99-default-release
-
 apt-get update -y
 apt-get upgrade -y
-apt-get dist-upgrade -y
-
 apt-get install -y rpi-update
 
 apt-get install -t stretch -y php7.0 php7.0-fpm php7.0-cli php7.0-opcache php7.0-mbstring php7.0-curl php7.0-xml php7.0-gd php7.0-mysql
@@ -127,9 +122,6 @@ apt-get -t stretch -y install mysql-server
 read -s -p "Type the password you just entered (MySQL): " mysqlPass
 
 mysql --user="root" --password="$mysqlPass" --database="mysql" --execute="GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY '$mysqlPass'; FLUSH PRIVILEGES;"
-
-sed -i 's/^bind-address/#bind-address/' /etc/mysql/mysql.conf.d/mysqld.cnf
-sed -i 's/^skip-networking/#skip-networking/' /etc/mysql/mysql.conf.d/mysqld.cnf
 
 service mysql restart
 
