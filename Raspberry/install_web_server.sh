@@ -50,7 +50,7 @@ server {
 	listen 80;
 	listen [::]:80;
 	
-	server_name raspberry www.raspberry;
+	server_name raspberry www.raspberry.com;
 	root /var/www/raspberry/public;
 	index index.php index.html index.htm default.html;
 	location / {
