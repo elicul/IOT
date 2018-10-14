@@ -1,8 +1,39 @@
-import { Controller } from '@nestjs/common';
+import { Controller, Get, Post, Body, Query, Param, Put, Delete } from '@nestjs/common';
 import { LocationService } from './location.service';
+import { Location } from 'location/location.entity';
+import { ApiUseTags } from '@nestjs/swagger';
+import { CreateLocationDto } from './create-location-dto';
+import { UpdateLocationDto } from './update-location-dto';
 
+@ApiUseTags('location')
 @Controller('location')
 export class LocationController {
     constructor(private readonly locationService: LocationService) {}
+
+    @Post()
+    async create(@Body() createLocationDto: CreateLocationDto) {
+        return 'This action adds a new cat';
+    }
+
+    @Get()
+    findAll(@Query() query): Promise<Location[]> {
+        // return `This action returns all cats (limit: ${query.limit} items)`;
+        return this.locationService.findAll();
+    }
+
+    @Get(':id')
+    findOne(@Param('id') id) {
+        return `This action returns a #${id} location`;
+    }
+
+    @Put(':id')
+    update(@Param('id') id, @Body() updateLocationDto: UpdateLocationDto) {
+        return `This action updates a #${id} location`;
+    }
+
+    @Delete(':id')
+    remove(@Param('id') id) {
+        return `This action removes a #${id} location`;
+    }
 
 }

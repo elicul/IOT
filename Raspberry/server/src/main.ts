@@ -6,8 +6,8 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const options = new DocumentBuilder()
-    .setTitle('Title')
-    .setDescription('API description')
+    .setTitle('Iot Api')
+    .setDescription('API for working with temperatures and locations')
     .setVersion('1.0')
     .build();
   const document = SwaggerModule.createDocument(app, options);

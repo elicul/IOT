@@ -9,4 +9,8 @@ export class LocationService {
         @InjectRepository(Location)
         private readonly locationRepository: Repository<Location>,
     ) {}
+
+    async findAll(): Promise<Location[]> {
+        return await this.locationRepository.find();
+    }
 }
