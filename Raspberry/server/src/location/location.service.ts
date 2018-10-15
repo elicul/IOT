@@ -3,7 +3,6 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Location } from 'location/location.entity';
 import { LocationDto } from './location-dto';
-import * as moment from 'moment';
 
 @Injectable()
 export class LocationService {
@@ -28,7 +27,8 @@ export class LocationService {
     }
 
     async create(createLocation: LocationDto): Promise<Location> {
-        const location = new Location(createLocation.name, moment().format('YYYY-MM-DD h:mm:ss'));
+        const location = new Location(createLocation.name);
+
         return await this.locationRepository.save(location);
     }
 
@@ -40,6 +40,7 @@ export class LocationService {
             })
             .catch(error => console.log(error));
         oldLocation.name = updateLocation.name;
+
         return await this.locationRepository.save(oldLocation);
     }
 
@@ -50,6 +51,7 @@ export class LocationService {
                 oldLocation = result;
             })
             .catch(error => console.log(error));
+
         return await this.locationRepository.remove(oldLocation);
     }
 }
