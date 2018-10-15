@@ -131,3 +131,6 @@ if [ "$prompt" = "y" ]; then
 fi
 
 apt-get -y autoremove
+
+wget -qO- https://deb.nodesource.com/setup_8.x | sudo -E bash -
+apt-get install -y nodejs build-essential
