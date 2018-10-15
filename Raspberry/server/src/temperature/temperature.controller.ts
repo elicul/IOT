@@ -3,7 +3,7 @@ import { ApiUseTags } from '@nestjs/swagger';
 import { TemperatureService } from './temperature.service';
 import { TemperatureDto } from './temperature-dto';
 import { Temperature } from './temperature.entity';
-import { LocationService } from 'location/location.service';
+import { LocationService } from '../location/location.service';
 
 @ApiUseTags('temperature')
 @Controller('temperature')
@@ -19,9 +19,8 @@ export class TemperatureController {
     }
 
     @Get()
-    findAll(@Query() query): Promise<Temperature[]> {
-        // return `This action returns all cats (limit: ${query.limit} items)`;
-        return this.temperatureService.findAll();
+    findLast(@Query() query): Promise<Temperature> {
+        return this.temperatureService.findLast();
     }
 
     @Get(':id')

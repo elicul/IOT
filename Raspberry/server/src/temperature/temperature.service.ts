@@ -3,7 +3,7 @@ import { Temperature } from './temperature.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { TemperatureDto } from './temperature-dto';
-import { Location } from 'location/location.entity';
+import { Location } from '../location/location.entity';
 
 @Injectable()
 export class TemperatureService {
@@ -22,6 +22,14 @@ export class TemperatureService {
             cache: true,
             relations: ['location'],
         });
+    }
+
+    async findLast(): Promise<Temperature> {
+        return await this.temperatureRepository.findOne({
+            order: {
+                id: 'DESC',
+            },
+            relations: ['location'] });
     }
 
     async findOne(id: number): Promise<Temperature> {
