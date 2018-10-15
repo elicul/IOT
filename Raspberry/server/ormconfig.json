@@ -1,0 +1,15 @@
+{
+    "type": "mysql",
+    "host": "127.0.0.1",
+    "port": 3306,
+    "username": "elicul",
+    "password": "secret",
+    "database": "backend",
+    "entities": ["src/**/**.entity{.ts,.js}"],
+    "synchronize": false,
+    "migrationsTableName": "migrations",
+    "migrations": ["src/migrations/*.ts"],
+    "cli": {
+      "migrationsDir": "src/migrations"
+    }
+}
