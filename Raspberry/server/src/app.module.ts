@@ -7,10 +7,10 @@ import { TemperatureModule } from './temperature/temperature.module';
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
     host: '127.0.0.1',
-    port: 3307,
+    port: 3306,
     username: 'elicul',
-    password: '123qweA!',
-    database: 'test',
+    password: 'secret',
+    database: 'backend',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
     synchronize: false,
     migrationsTableName: 'migrations',
