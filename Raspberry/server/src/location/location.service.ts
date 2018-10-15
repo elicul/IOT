@@ -6,42 +6,42 @@ import { LocationDto } from './location-dto';
 
 @Injectable()
 export class LocationService {
-    constructor(
-        @InjectRepository(Location)
-        private readonly locationRepository: Repository<Location>,
-    ) {}
+  constructor(
+    @InjectRepository(Location)
+    private readonly locationRepository: Repository<Location>,
+  ) {}
 
-    async findAll(): Promise<Location[]> {
-        return await this.locationRepository.find({
-            order: {
-                name: 'ASC',
-            },
-            // skip: 1,
-            take: 10,
-            cache: true,
-        });
-    }
+  async findAll(): Promise<Location[]> {
+    return await this.locationRepository.find({
+      order: {
+        name: 'ASC',
+      },
+      // skip: 1,
+      take: 10,
+      cache: true,
+    });
+  }
 
-    async findOne(id: number): Promise<Location> {
-        return await this.locationRepository.findOne(id);
-    }
+  async findOne(id: number): Promise<Location> {
+    return await this.locationRepository.findOne(id);
+  }
 
-    async create(createLocation: LocationDto): Promise<Location> {
-        const location = new Location(createLocation.name);
+  async create(createLocation: LocationDto): Promise<Location> {
+    const location = new Location(createLocation.name);
 
-        return await this.locationRepository.save(location);
-    }
+    return await this.locationRepository.save(location);
+  }
 
-    async update(updateLocation: LocationDto, id: number): Promise<Location> {
-        const oldLocation = await this.findOne(id);
-        oldLocation.name = updateLocation.name;
+  async update(updateLocation: LocationDto, id: number): Promise<Location> {
+    const oldLocation = await this.findOne(id);
+    oldLocation.name = updateLocation.name;
 
-        return await this.locationRepository.save(oldLocation);
-    }
+    return await this.locationRepository.save(oldLocation);
+  }
 
-    async delete(id: number): Promise<Location> {
-        const oldLocation = await this.locationRepository.findOne(id);
+  async delete(id: number): Promise<Location> {
+    const oldLocation = await this.locationRepository.findOne(id);
 
-        return await this.locationRepository.remove(oldLocation);
-    }
+    return await this.locationRepository.remove(oldLocation);
+  }
 }
