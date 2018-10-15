@@ -3,15 +3,19 @@ import { ApiUseTags } from '@nestjs/swagger';
 import { TemperatureService } from './temperature.service';
 import { TemperatureDto } from './temperature-dto';
 import { Temperature } from './temperature.entity';
+import { LocationService } from 'location/location.service';
 
 @ApiUseTags('temperature')
 @Controller('temperature')
 export class TemperatureController {
-    constructor(private readonly temperatureService: TemperatureService) {}
+    constructor(private readonly temperatureService: TemperatureService,
+                private readonly locationService: LocationService) {}
 
     @Post()
     async create(@Body() temperatureDto: TemperatureDto) {
-        return await this.temperatureService.create(temperatureDto);
+        const location = await this.locationService.findOne(temperatureDto.locationId);
+
+        return await this.temperatureService.create(temperatureDto, location);
     }
 
     @Get()
@@ -31,7 +35,7 @@ export class TemperatureController {
     }
 
     @Delete(':id')
-    remove(@Param('id') id: number): Promise<Temperature[]> {
+    remove(@Param('id') id: number): Promise<Temperature> {
         return this.temperatureService.delete(id);
     }
 }

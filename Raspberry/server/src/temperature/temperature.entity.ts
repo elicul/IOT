@@ -1,12 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import * as moment from 'moment';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
+import { Location } from 'location/location.entity';
 
 @Entity()
 export class Temperature {
-    constructor(temperature?: number, humidity?: number) {
+    constructor(temperature?: number, humidity?: number, location?: Location) {
         this.temperature = temperature;
         this.humidity = humidity;
-        this.createdDate = moment().format('YYYY-MM-DD h:mm:ss');
+        this.location = location;
     }
 
     @PrimaryGeneratedColumn() id: number;
@@ -15,5 +15,10 @@ export class Temperature {
 
     @Column('float', { precision: 4, scale: 2 }) humidity: number;
 
-    @Column('datetime') createdDate: string;
+    @CreateDateColumn() createdDateUTC: string;
+
+    @ManyToOne(type => Location, location => location.temperatures, {
+        cascade: true,
+    })
+    location: Location;
 }

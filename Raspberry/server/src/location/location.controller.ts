@@ -16,7 +16,6 @@ export class LocationController {
 
     @Get()
     findAll(@Query() query): Promise<Location[]> {
-        // return `This action returns all cats (limit: ${query.limit} items)`;
         return this.locationService.findAll();
     }
 
@@ -31,7 +30,7 @@ export class LocationController {
     }
 
     @Delete(':id')
-    remove(@Param('id') id: number): Promise<Location[]> {
+    remove(@Param('id') id: number): Promise<Location> {
         return this.locationService.delete(id);
     }
 

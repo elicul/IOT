@@ -33,24 +33,14 @@ export class LocationService {
     }
 
     async update(updateLocation: LocationDto, id: number): Promise<Location> {
-        let oldLocation;
-        await this.findOne(id)
-            .then(result => {
-                oldLocation = result;
-            })
-            .catch(error => console.log(error));
+        const oldLocation = await this.findOne(id);
         oldLocation.name = updateLocation.name;
 
         return await this.locationRepository.save(oldLocation);
     }
 
-    async delete(id: number): Promise<Location[]> {
-        let oldLocation;
-        await this.locationRepository.findOne(id)
-            .then(result => {
-                oldLocation = result;
-            })
-            .catch(error => console.log(error));
+    async delete(id: number): Promise<Location> {
+        const oldLocation = await this.locationRepository.findOne(id);
 
         return await this.locationRepository.remove(oldLocation);
     }
