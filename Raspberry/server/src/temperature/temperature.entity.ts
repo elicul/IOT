@@ -11,9 +11,9 @@ export class Temperature {
 
     @PrimaryGeneratedColumn() id: number;
 
-    @Column() temperature: number;
+    @Column('float', { precision: 4, scale: 2 }) temperature: number;
 
-    @Column() humidity: number;
+    @Column('float', { precision: 4, scale: 2 }) humidity: number;
 
     @Column('datetime') createdDate: string;
 }
