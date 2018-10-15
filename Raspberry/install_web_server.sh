@@ -47,9 +47,9 @@ server {
 }
 # Raspberry server configuration
 server {
-	listen 80;
-	listen [::]:80;
-	server_name raspberry www.raspberry.com;
+	listen 8000;
+	listen [::]:8000;
+	server_name localhost localhost;
 	location / {
 		proxy_pass http://localhost:8000;
         proxy_http_version 1.1;
@@ -120,3 +120,8 @@ apt-get -y autoremove
 
 wget -qO- https://deb.nodesource.com/setup_8.x | sudo -E bash -
 apt-get install -y nodejs build-essential
+
+npm install pm2 -g
+pm2 completion install
+
+env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
