@@ -1,11 +1,12 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import * as moment from 'moment';
 
 @Entity()
 export class Temperature {
-    constructor(temperature?: number, humidity?: number, createdDate?: string) {
+    constructor(temperature?: number, humidity?: number) {
         this.temperature = temperature;
         this.humidity = humidity;
-        this.createdDate = createdDate;
+        this.createdDate = moment().format('YYYY-MM-DD h:mm:ss');
     }
 
     @PrimaryGeneratedColumn() id: number;

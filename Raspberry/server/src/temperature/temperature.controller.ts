@@ -26,8 +26,8 @@ export class TemperatureController {
     }
 
     @Put(':id')
-    update(@Param('id') id: number, @Body() updatetemperatureDto: TemperatureDto): Promise<Temperature> {
-        return this.temperatureService.update(updatetemperatureDto, id);
+    update(@Param('id') id: number, @Body() updateTemperatureDto: TemperatureDto): Promise<Temperature> {
+        return this.temperatureService.update(updateTemperatureDto, id);
     }
 
     @Delete(':id')

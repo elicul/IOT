@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Query, Param, Put, Delete } from '@nestjs/common';
 import { LocationService } from './location.service';
-import { Location } from 'location/location.entity';
+import { Location } from './location.entity';
 import { ApiUseTags } from '@nestjs/swagger';
 import { LocationDto } from './location-dto';
 

@@ -12,10 +12,10 @@ export class TemperatureDto {
     @IsNumber()
     readonly humidity: number;
 
-    @ApiModelProperty()
-    @IsNotEmpty()
-    @IsNumber()
-    readonly locationId: number;
+    // @ApiModelProperty()
+    // @IsNotEmpty()
+    // @IsNumber()
+    // readonly locationId: number;
 
     createdDate?: string;
     id?: number;

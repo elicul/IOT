@@ -16,7 +16,7 @@ export class TemperatureService {
             order: {
                 temperature: 'ASC',
             },
-            skip: 1,
+            // skip: 1,
             take: 10,
             cache: true,
         });

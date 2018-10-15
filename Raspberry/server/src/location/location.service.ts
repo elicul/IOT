@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Location } from 'location/location.entity';
+import { Location } from './location.entity';
 import { LocationDto } from './location-dto';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class LocationService {
             order: {
                 name: 'ASC',
             },
-            skip: 1,
+            // skip: 1,
             take: 10,
             cache: true,
         });
