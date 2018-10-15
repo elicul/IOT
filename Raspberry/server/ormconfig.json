@@ -6,5 +6,9 @@
   "password": "123qweA!",
   "database": "test",
   "entities": ["src/**/**.entity{.ts,.js}"],
-  "synchronize": true
+  "migrationsTableName": "migrations",
+  "migrations": ["migrations/*.ts"],
+  "cli": {
+    "migrationsDir": "migrations"
+  }
 }

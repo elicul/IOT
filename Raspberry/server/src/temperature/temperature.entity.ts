@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDateColumn } from 'typeorm';
-import { Location } from 'location/location.entity';
+import { Location } from '../location/location.entity';
 
 @Entity()
 export class Temperature {
