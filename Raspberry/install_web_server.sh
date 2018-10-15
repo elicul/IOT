@@ -49,29 +49,15 @@ server {
 server {
 	listen 80;
 	listen [::]:80;
-	
 	server_name raspberry www.raspberry.com;
-	root /var/www/raspberry/public;
-	index index.php index.html index.htm default.html;
 	location / {
-		try_files $uri $uri/ =404;
-	}
-	# pass the PHP scripts to FastCGI server
-	location ~ \.php$ {
-		include snippets/fastcgi-php.conf;
-		fastcgi_pass unix:/run/php/php7.0-fpm.sock;
-	}
-	
-	# optimize static file serving
-	location ~* \.(jpg|jpeg|gif|png|css|js|ico|xml)$ {
-		access_log off;
-		log_not_found off;
-		expires 30d;
-	}
-	# deny access to .htaccess files, should an Apache document root conflict with nginx
-	location ~ /\.ht {
-		deny all;
-	}
+		proxy_pass http://localhost:8000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_cache_bypass $http_upgrade;
+    }
 }
 EOF
 
