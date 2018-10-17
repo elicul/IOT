@@ -7,14 +7,12 @@ import { metaReducers, reducers } from './app.reducer';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { environment } from '../../environments/environment';
 
-import { AuthStoreModule } from './auth/auth-store.module';
 import { CoreStoreModule } from './core/core-store.module';
 import { FeaturesStoreModule } from './features/features-store.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    AuthStoreModule,
     CoreStoreModule,
     FeaturesStoreModule,
     StoreModule.forRoot({}),

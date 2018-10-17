@@ -4,6 +4,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { WelcomeComponent } from './welcome.component';
 import { SharedModule } from '../../shared/shared.module';
 import { NotificationsService } from 'angular2-notifications';
+import { HeaderComponent } from './header/header.component';
+import { HttpClientModule } from '@angular/common/http';
 
 export const ROUTES: Routes = [
   {
@@ -14,12 +16,14 @@ export const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
-    WelcomeComponent
+    WelcomeComponent,
+    HeaderComponent
   ],
   imports: [
     SharedModule,
     RouterModule,
-    RouterModule.forChild(ROUTES)
+    RouterModule.forChild(ROUTES),
+    HttpClientModule
   ],
   exports: [
     WelcomeComponent

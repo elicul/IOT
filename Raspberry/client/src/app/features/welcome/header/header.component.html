@@ -1,0 +1,9 @@
+<div class="content"
+  fxLayout="row"
+  fxLayout.xs="column"
+  fxFlexFill >
+
+  <div *ngFor="let location of locations" fxFlex="25" class="sec">
+    {{ location.name }}
+  </div>
+</div>

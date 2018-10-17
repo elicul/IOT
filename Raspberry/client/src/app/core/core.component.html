@@ -1,9 +1,6 @@
 <mat-sidenav-container class="background-color">
-  <mat-sidenav #sidenav role="navigation" mode="side" class="sidenav-size">
-    <app-sitenav (closeSidenav)="sidenav.close()"></app-sitenav>
-  </mat-sidenav>
   <mat-sidenav-content>
-    <app-header (sidenavToggle)="sidenav.toggle()"></app-header>
+    <app-header></app-header>
     <main>
       <router-outlet></router-outlet>
     </main>

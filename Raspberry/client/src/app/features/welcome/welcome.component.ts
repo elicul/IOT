@@ -1,9 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-
+import { Location } from '../../models/location.model';
 import * as fromRoot from '../../store/app.reducer';
-import * as AuthActions from '../../store/auth/auth.actions';
+import { WelcomeService } from './welcome.service';
 
 @Component({
   selector: 'app-welcome',
@@ -11,15 +11,15 @@ import * as AuthActions from '../../store/auth/auth.actions';
   styleUrls: ['./welcome.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class WelcomeComponent {
-  loggedIn$: Observable<boolean>;
+export class WelcomeComponent implements OnInit {
+  locations$: Observable<Array<Location>>;
 
-  constructor(private store: Store<fromRoot.State>) {
-      this.loggedIn$ = this.store.pipe(select(fromRoot.getIsAuth));
+  constructor(private store: Store<fromRoot.State>,
+              private welcomeService: WelcomeService) {
   }
 
-  logout(): void {
-    this.store.dispatch(new AuthActions.LogOut());
+  ngOnInit(): void {
+    this.locations$ = this.welcomeService.getLocations();
   }
 
 }

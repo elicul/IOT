@@ -1,15 +1,10 @@
 {
-  "GATEWAY_API_URL": "http://eberecruitinggateway.ebe-inc.test/",
+  "GATEWAY_API_URL": "http://192.168.0.187:8080",
 
-  "USER_LOGIN_PATH" : "user/login",
-  "USER_AUTOLOGIN_PATH" : "user/login-confirmed",
-  "USER_REGISTER_PATH" : "user/register/",
+  "LOCATION" : "/location",
+  "LOCATION_ID" : "/location/{id}",
 
-  "USER_EMAIL_CONFIRMED_PATH" : "user/emailconfirmed?UserId={UserId}",
-  "USER_EMAIL_CONFIRM_PATH" : "user/emailconfirm?UserId={UserId}&Token={Token}",
-  "USER_RESEND_EMAIL_CONFIRM_PATH" : "user/resendemailconfirm?UserId={UserId}&CompanyId={CompanyId}&SecurityClientSettingId={SecurityClientSettingId}&ClientConfigurationId={ClientConfigurationId}&ReturnUrl={ReturnUrl}&QueryParams={QueryParams}",
-
-  "USER_FORGOT_PASSWORD_PATH" : "user/forgotpassword",
-  "USER_RESET_PASSWORD_PATH" : "user/resetpassword",
-  "USER_CHANGE_PASSWORD_PATH" : "user/changepassword"
+  "TEMPERATURE" : "temperature",
+  "TEMPERATURE_ID" : "/temperature/{id}",
+  "TEMPERATURE_LOCATION_ID" : "/temperature/location/{id}"
 }
