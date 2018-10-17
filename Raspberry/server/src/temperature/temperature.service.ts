@@ -42,7 +42,9 @@ export class TemperatureService {
   async findLastByLocationId(id: number): Promise<Temperature> {
     return await this.temperatureRepository.findOne(id, {
       where: {
-        locationId: id,
+        location: {
+          id,
+        },
       },
       order: {
         id: 'DESC',
