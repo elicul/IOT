@@ -4,6 +4,6 @@
   fxFlexFill >
 
   <div *ngFor="let location of locations" fxFlex="25" class="sec">
-    {{ location.name }}
+    <app-item [locationId]="location.id"></app-item>
   </div>
 </div>

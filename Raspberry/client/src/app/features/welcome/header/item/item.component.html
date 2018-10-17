@@ -1,0 +1,5 @@
+<div *ngIf="(temperature$ | async) as temp">
+  <p>Temperature {{ temp.temperature }} C</p>
+  <p>Humidity {{ temp.humidity }} %</p>
+  <p>Last measured {{ temp.createdDateUTC }}</p>
+</div>

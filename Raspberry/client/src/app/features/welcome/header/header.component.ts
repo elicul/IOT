@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { Location } from '../../../models/location.model';
+import { WelcomeService } from '../welcome.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +9,9 @@ import { Location } from '../../../models/location.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-  @Input('locations') locations: Array<Location>;
+  @Input() locations: Array<Location>;
 
-  constructor() { }
+  constructor(private welcomeService: WelcomeService) { }
 
   ngOnInit() {
   }

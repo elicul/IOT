@@ -6,6 +6,8 @@ import { SharedModule } from '../../shared/shared.module';
 import { NotificationsService } from 'angular2-notifications';
 import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ItemComponent } from './header/item/item.component';
+import { WelcomeService } from './welcome.service';
 
 export const ROUTES: Routes = [
   {
@@ -17,7 +19,8 @@ export const ROUTES: Routes = [
 @NgModule({
   declarations: [
     WelcomeComponent,
-    HeaderComponent
+    HeaderComponent,
+    ItemComponent
   ],
   imports: [
     SharedModule,
@@ -29,7 +32,8 @@ export const ROUTES: Routes = [
     WelcomeComponent
   ],
   providers: [
-    NotificationsService
+    NotificationsService,
+    WelcomeService
   ]
 })
 export class WelcomeModule {}
