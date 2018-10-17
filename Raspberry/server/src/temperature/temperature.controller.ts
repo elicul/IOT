@@ -41,6 +41,11 @@ export class TemperatureController {
     return this.temperatureService.findOne(id);
   }
 
+  @Get('location/:id')
+  findLastByLocationId(@Param('id') id: number): Promise<Temperature> {
+    return this.temperatureService.findLastByLocationId(id);
+  }
+
   @Put(':id')
   update(
     @Param('id') id: number,

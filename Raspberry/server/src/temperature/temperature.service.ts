@@ -39,6 +39,18 @@ export class TemperatureService {
     });
   }
 
+  async findLastByLocationId(id: number): Promise<Temperature> {
+    return await this.temperatureRepository.findOne(id, {
+      where: {
+        locationId: id,
+      },
+      order: {
+        id: 'DESC',
+      },
+      relations: ['location'],
+    });
+  }
+
   async create(
     createTemperature: TemperatureDto,
     location: Location,
