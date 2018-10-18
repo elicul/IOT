@@ -21,9 +21,4 @@ export class WelcomeService extends BaseService {
       this.endpointConfiguration.GATEWAY_API_URL +
       this.endpointConfiguration.LOCATION);
   }
-
-  getTemperature(locationId: number): Observable<Temperature> {
-    return this.http.get<Temperature>(`${this.endpointConfiguration.GATEWAY_API_URL}${this.endpointConfiguration.TEMPERATURE_LOCATION_ID
-        .replace('{id}', locationId.toString())}`);
-  }
 }

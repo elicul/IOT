@@ -3,7 +3,7 @@
   fxLayout.xs="column"
   fxFlexFill >
 
-  <div *ngFor="let location of locations" fxFlex="25" class="sec">
-    <app-item [locationId]="location.id"></app-item>
+  <div *ngFor="let location of locations" fxFlex="50" class="sec">
+    <app-item [location]="location"></app-item>
   </div>
 </div>

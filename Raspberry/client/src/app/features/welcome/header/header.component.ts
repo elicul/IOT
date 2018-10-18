@@ -1,6 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { TemperatureLocation } from '../../../models/temperature-location.model';
-import { WelcomeService } from '../welcome.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +10,7 @@ import { WelcomeService } from '../welcome.service';
 export class HeaderComponent implements OnInit {
   @Input() locations: Array<TemperatureLocation>;
 
-  constructor(private welcomeService: WelcomeService) { }
+  constructor() { }
 
   ngOnInit() {
   }

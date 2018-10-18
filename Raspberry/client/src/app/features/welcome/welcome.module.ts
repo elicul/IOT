@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ItemComponent } from './header/item/item.component';
 import { WelcomeService } from './welcome.service';
+import { ThermometerSvgComponent } from './header/item/thermometer-svg/thermometer-svg.component';
 
 export const ROUTES: Routes = [
   {
@@ -20,7 +21,8 @@ export const ROUTES: Routes = [
   declarations: [
     WelcomeComponent,
     HeaderComponent,
-    ItemComponent
+    ItemComponent,
+    ThermometerSvgComponent
   ],
   imports: [
     SharedModule,

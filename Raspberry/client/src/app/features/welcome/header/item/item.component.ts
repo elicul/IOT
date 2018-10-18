@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core
 import { Temperature } from '../../../../models/temperature.model';
 import { WelcomeService } from '../../welcome.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { TemperatureLocation } from 'src/app/models/temperature-location.model';
 
 @Component({
   selector: 'app-item',
@@ -10,18 +11,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ItemComponent implements OnInit {
-  @Input()
-  set locationId(id: number) {
-    this.temperature$ = this.welcomeService.getTemperature(id);
-  }
-  get locationId(): number {
-    return this._locationId.getValue();
-  }
+  @Input() location: TemperatureLocation;
 
-  temperature$: Observable<Temperature>;
-  private _locationId = new BehaviorSubject<number>(undefined);
-
-  constructor(private welcomeService: WelcomeService) { }
+  constructor() { }
 
   ngOnInit(): void {
   }

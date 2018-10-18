@@ -1,5 +1,5 @@
 <section class="welcome-section">
     <app-header
-      [locations]="locations">
+      [locations]="(locations$ | async)">
     </app-header>
 </section>
