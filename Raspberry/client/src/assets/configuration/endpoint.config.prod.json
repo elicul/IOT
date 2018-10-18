@@ -1,5 +1,5 @@
 {
-  "GATEWAY_API_URL": "http://localhost:8080",
+  "GATEWAY_API_URL": "http://192.168.0.187:8080",
 
   "LOCATION" : "/location",
   "LOCATION_ID" : "/location/{id}",

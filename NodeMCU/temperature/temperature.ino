@@ -42,7 +42,7 @@ void loop()
  
     JSONencoder["temperature"] = t;
     JSONencoder["humidity"] = h;
-    JSONencoder["locationId"] = 1;
+    JSONencoder["locationId"] = 2;
  
     char JSONmessageBuffer[300];
     JSONencoder.prettyPrintTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
