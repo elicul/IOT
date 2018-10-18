@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Location } from '../../models/location.model';
+import { TemperatureLocation } from '../../models/temperature-location.model';
 import { Observable } from 'rxjs';
 import { BaseService } from '../../shared/base.service';
 import * as fromRoot from '../../store/app.reducer';
@@ -16,8 +16,8 @@ export class WelcomeService extends BaseService {
     super(store);
   }
 
-  getLocations(): Observable<Array<Location>> {
-    return this.http.get<Array<Location>>(
+  getLocations(): Observable<Array<TemperatureLocation>> {
+    return this.http.get<Array<TemperatureLocation>>(
       this.endpointConfiguration.GATEWAY_API_URL +
       this.endpointConfiguration.LOCATION);
   }

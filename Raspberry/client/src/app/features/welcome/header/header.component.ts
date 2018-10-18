@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-import { Location } from '../../../models/location.model';
+import { TemperatureLocation } from '../../../models/temperature-location.model';
 import { WelcomeService } from '../welcome.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { WelcomeService } from '../welcome.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
-  @Input() locations: Array<Location>;
+  @Input() locations: Array<TemperatureLocation>;
 
   constructor(private welcomeService: WelcomeService) { }
 

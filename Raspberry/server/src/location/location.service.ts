@@ -3,6 +3,8 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Location } from './location.entity';
 import { LocationDto } from './location-dto';
+import { last, orderBy } from 'lodash';
+import { Temperature } from '../temperature/temperature.entity';
 
 @Injectable()
 export class LocationService {
@@ -12,14 +14,21 @@ export class LocationService {
   ) {}
 
   async findAll(): Promise<Location[]> {
-    return await this.locationRepository.find({
+    const locations = await this.locationRepository.find({
       order: {
         name: 'ASC',
       },
-      // skip: 1,
-      take: 10,
-      cache: true,
+      relations: ['temperatures'],
     });
+
+    locations.forEach(location => {
+      location.temperatures = orderBy(location.temperatures, ['id'], ['asc']);
+      const lastTemperature = last(location.temperatures);
+      location.temperatures = new Array<Temperature>();
+      location.temperatures.push(lastTemperature);
+    });
+
+    return Promise.resolve(locations);
   }
 
   async findOne(id: number): Promise<Location> {

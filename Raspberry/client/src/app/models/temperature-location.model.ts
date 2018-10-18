@@ -1,5 +1,5 @@
 import { Base } from './base.model';
 
-export interface Location extends Base {
+export interface TemperatureLocation extends Base {
   name: string;
 }
