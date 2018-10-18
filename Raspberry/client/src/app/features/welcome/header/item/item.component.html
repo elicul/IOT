@@ -2,10 +2,9 @@
   <mat-card-content>
     <div class="content"
       fxLayout="row"
-      fxLayout.xs="column"
+      fxLayoutAlign="center center"
       fxFlexFill >
-
-      <div fxFlex="50">
+      <div fxFlex="60%">
         <h1>
           <i class="material-icons">
             location_on
@@ -13,21 +12,26 @@
           {{ location.name | uppercase}}
         </h1>
         <h2>
-          Temperature: {{ location.temperatures[0].temperature }} C<sup>o</sup>
+          Temperature: <span class="purple-color">
+            {{ location.temperatures[0].temperature }} C<sup>o</sup>
+          </span>
         </h2>
         <h2>
-          Humidity: {{ location.temperatures[0].humidity }} %
+          Humidity: <span class="purple-color">
+            {{ location.temperatures[0].humidity }} %
+          </span>
         </h2>
-        <h3>
-          Last measured:  {{ location.temperatures[0].createdDateUTC }}
-        </h3>
+        <h4>
+          On <span class="purple-color">
+            {{ location.temperatures[0].createdDateUTC | date:'d/M/yyyy H:mm'}}
+          </span>
+        </h4>
       </div>
-      <div fxFlex="50">
+      <div fxFlex="40%">
         <app-thermometer-svg
           [temperature]="location.temperatures[0].temperature">
         </app-thermometer-svg>
       </div>
     </div>
-
   </mat-card-content>
 </mat-card>
