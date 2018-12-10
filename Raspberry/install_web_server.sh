@@ -164,18 +164,20 @@ EOF
 
 echo "dtoverlay=lirc-rpi,gpio_in_pin=23,gpio_out_pin=22" >> /boot/config.txt 
 
-# Update the following lines in /etc/lirc/lirc_options.conf
-
+# ## Update the following lines in /etc/lirc/lirc_options.conf
 # driver    = default
 # device    = /dev/lirc0
 
-# /etc/init.d/lircd stop
-# /etc/init.d/lircd start
+# $ sudo /etc/init.d/lircd stop
+# $ sudo /etc/init.d/lircd start
 
-# Reboot before testing
-# reboot
+# # Check status to make lirc is running
+# $ sudo /etc/init.d/lircd status
 
-# To test if lirc driver is working
+# # Reboot before testing
+# $ reboot
+
+# # To test if lirc driver is working
 # $ sudo /etc/init.d/lircd stop
 # $ mode2 -d /dev/lirc0
 # <press a key in remote and you should see multple lines like below>
