@@ -125,3 +125,75 @@ npm install pm2 -g
 pm2 completion install
 
 env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u pi --hp /home/pi
+
+# Instal lirc
+apt-get install lirc ir-keytable
+
+cat > /etc/modules << "EOF"
+lirc_dev
+lirc_rpi gpio_in_pin=23 gpio_out_pin=22
+EOF
+
+cat > /etc/lirc/hardware.conf << "EOF"
+########################################################
+# /etc/lirc/hardware.conf
+#
+# Arguments which will be used when launching lircd
+LIRCD_ARGS="--uinput"
+
+# Don't start lircmd even if there seems to be a good config file
+# START_LIRCMD=false
+
+# Don't start irexec, even if a good config file seems to exist.
+# START_IREXEC=false
+
+# Try to load appropriate kernel modules
+LOAD_MODULES=true
+
+# Run "lircd --driver=help" for a list of supported drivers.
+DRIVER="default"
+# usually /dev/lirc0 is the correct setting for systems using udev
+DEVICE="/dev/lirc0"
+MODULES="lirc_rpi"
+
+# Default configuration files for your hardware if any
+LIRCD_CONF=""
+LIRCMD_CONF=""
+########################################################
+EOF
+
+echo "dtoverlay=lirc-rpi,gpio_in_pin=23,gpio_out_pin=22" >> /boot/config.txt 
+
+# Update the following lines in /etc/lirc/lirc_options.conf
+
+# driver    = default
+# device    = /dev/lirc0
+
+# /etc/init.d/lircd stop
+# /etc/init.d/lircd start
+
+# Reboot before testing
+# reboot
+
+# To test if lirc driver is working
+# $ sudo /etc/init.d/lircd stop
+# $ mode2 -d /dev/lirc0
+# <press a key in remote and you should see multple lines like below>
+# pulse 560
+# space 1706
+# pulse 535
+
+# # to record a custom remote/register a remote device
+# $ sudo /etc/init.d/lircd stop
+# $ sudo irrecord -d /dev/lirc0 ~/lircd.conf
+# # follow the instruction prompted by the above command carefully
+# # at the end ~/lircd.conf file will be generated
+
+# # backup the original lircd.conf
+# $ sudo mv /etc/lirc/lircd.conf /etc/lirc/lircd_original.conf
+# $ sudo cp ~/lircd.conf /etc/lirc/lircd.conf
+# $ sudo /etc/init.d/lircd start
+
+# # you can test if the recorded remote works by
+# $ irsend SEND_ONCE <device-name> KEY_POWER
+# $ irsend SEND_ONCE <device-name> KEY_VOLUMEUP
